@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# 設置環境變量
+export PROJECT_DIR=$(pwd)
+export BACKEND_DIR=$PROJECT_DIR/backend
+export FRONTEND_DIR=$PROJECT_DIR/frontend
+export MOBILE_DIR=$PROJECT_DIR/mobile
+export CONTRACTS_DIR=$PROJECT_DIR/contracts
+
+# 檢查並安裝 Poetry（後端依賴管理）
+if ! command -v poetry &> /dev/null
+then
+    echo "Poetry 未安裝，正在安裝..."
+    curl -sSL https://install.python-poetry.org | python3 -
+    export PATH="$HOME/.local/bin:$PATH"
+else
+    echo "Poetry 已安裝"
+fi
+
+# 後端設置
+echo "正在設置後端環境..."
+cd $BACKEND_DIR
+poetry install
+echo "後端環境設置完成"
+
+# 前端設置
+echo "正在設置前端環境..."
+cd $FRONTEND_DIR
+npm install
+echo "前端環境設置完成"
+
+# 移動端設置
+echo "正在設置移動端環境..."
+cd $MOBILE_DIR
+flutter pub get
+echo "移動端環境設置完成"
+
+# 智能合約設置（假設使用 Move）
+echo "正在設置智能合約環境..."
+cd $CONTRACTS_DIR
+# 根據實際情況添加 Move 相關的設置命令
+echo "智能合約環境設置完成"
+
+# 設置完成提示
+echo "開發環境設置完成！"
