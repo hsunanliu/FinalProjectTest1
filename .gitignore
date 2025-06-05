@@ -1,0 +1,21 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+venv/
+.env
+
+# Node.js
+node_modules/
+
+# Flutter
+build/
+
+# Docker
+*.log
+
+# Env template (保留 .env.sample)
+!.env.sample
